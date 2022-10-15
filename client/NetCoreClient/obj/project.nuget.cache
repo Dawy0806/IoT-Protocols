@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8soIJ9yk602sGOlhN4byA8aaxebNYXIHlr1kbHFudb6Ylg5QfmuGqC6zhJpHGPktq7eGdh6QN43dgny71nRQmQ==",
+  "dgSpecHash": "QArnozKverLXeUYj8y7KcdWIM6Dj7VmSSKVt9AFUkTdZGJsduYQVrpxEyqos37Qc6TnQeWoRnjtFypoIP/HJ0w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\Documents\\Corso ITS\\Stefano Valle\\client\\NetCoreClient\\NetCoreClient.csproj",
+  "projectFilePath": "C:\\Users\\User\\source\\repos\\IoT-Protocols\\client\\NetCoreClient\\NetCoreClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

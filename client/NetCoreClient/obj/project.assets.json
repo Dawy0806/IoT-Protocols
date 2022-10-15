@@ -506,11 +506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\Corso ITS\\Stefano Valle\\client\\NetCoreClient\\NetCoreClient.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\IoT-Protocols\\client\\NetCoreClient\\NetCoreClient.csproj",
       "projectName": "NetCoreClient",
-      "projectPath": "C:\\Users\\User\\Documents\\Corso ITS\\Stefano Valle\\client\\NetCoreClient\\NetCoreClient.csproj",
+      "projectPath": "C:\\Users\\User\\Source\\Repos\\IoT-Protocols\\client\\NetCoreClient\\NetCoreClient.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\Corso ITS\\Stefano Valle\\client\\NetCoreClient\\obj\\",
+      "outputPath": "C:\\Users\\User\\Source\\Repos\\IoT-Protocols\\client\\NetCoreClient\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
