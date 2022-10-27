@@ -1,6 +1,6 @@
 ﻿namespace NetCoreClient.ValueObjects
 {
-    internal class Speed
+    public class Speed
     {
         public int Velocita { get; private set; }
         

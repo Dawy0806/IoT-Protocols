@@ -1,4 +1,5 @@
-﻿using NetCoreClient.Protocols;
+﻿using NetCoreClient.Interfacce;
+using NetCoreClient.Protocols;
 using NetCoreClient.Sensors;
 
 // define sensors
@@ -10,7 +11,7 @@ sensors.Add(new VirtualChargeSensor());
 sensors.Add(new VirtualTemperatureSensor());
 
 // define protocol
-ProtocolInterface protocol = new Http("http://localhost:8011/drones/123");
+IProtocol protocol = new Http("http://localhost:8011/drones/123");
 
 // send data to server
 while (true)

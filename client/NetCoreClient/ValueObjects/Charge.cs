@@ -2,7 +2,7 @@
 
 namespace NetCoreClient.ValueObjects
 {
-    internal class Charge
+    public class Charge
     {
         public int Batteria { get; private set; }
 

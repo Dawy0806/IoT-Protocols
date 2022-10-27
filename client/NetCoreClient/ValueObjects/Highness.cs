@@ -2,7 +2,7 @@
 
 namespace NetCoreClient.ValueObjects
 {
-    internal class Highness
+    public class Highness
     {
         public int Altezza { get; private set; }
 

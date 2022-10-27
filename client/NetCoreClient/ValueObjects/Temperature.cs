@@ -1,6 +1,6 @@
 ﻿namespace NetCoreClient.ValueObjects
 {
-    internal class Temperature
+    public class Temperature
     {
         public double TempMot { get; private set; }
         public double TempPro { get; private set; }

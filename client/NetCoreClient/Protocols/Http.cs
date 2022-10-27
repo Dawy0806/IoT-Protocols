@@ -1,8 +1,9 @@
-﻿using System.Net;
+﻿using NetCoreClient.Interfacce;
+using System.Net;
 
 namespace NetCoreClient.Protocols
 {
-    class Http : ProtocolInterface
+    class Http : IProtocol
     {
         private string Endpoint;
         //private HttpWebRequest httpWebRequest;
