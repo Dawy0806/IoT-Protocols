@@ -2,11 +2,11 @@
 {
     internal class Speed
     {
-        public int Value { get; private set; }
+        public int Velocita { get; private set; }
         
         public Speed(int value)
         {
-            this.Value = value;
+            this.Velocita = value;
         }
 
     }
