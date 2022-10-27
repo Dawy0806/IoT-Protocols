@@ -19,7 +19,6 @@ namespace NetCoreClient.Sensors
             double c = Random.NextDouble();
             double d = Random.Next(100);
             double[] Temperature = new double[2];
-            //posizione 0 = latitudine , posizione 1 = longitudine
             Temperature[0] = a * b;
             Temperature[1] = c * d;
             Temperature[0] = Math.Round(Temperature[0], 1);
