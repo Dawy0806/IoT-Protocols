@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NetCoreClient.Sensors
 {
-    class VirtualSpeedSensor : ISpeedSensor, ISensorJson
+    class VirtualSpeedSensor : ISpeedSensor//, ISensorJson
     {
         private readonly Random Random;
 
@@ -17,9 +17,9 @@ namespace NetCoreClient.Sensors
             return new Speed(Random.Next(100)).Velocita;
         }
 
-        public string ToJson()
-        {
-            return JsonSerializer.Serialize(Speed());
-        }
+        //public string ToJson()
+        //{
+        //    return JsonSerializer.Serialize(Speed());
+        //}
     }
 }

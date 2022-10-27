@@ -1,17 +1,16 @@
 ﻿using NetCoreClient.Interfacce;
 using NetCoreClient.Protocols;
+using NetCoreClient.SendData;
 using NetCoreClient.Sensors;
 
 // define sensors
 List<ISensorJson> sensors = new();
-sensors.Add(new VirtualSpeedSensor());
-sensors.Add(new VirtualPositonSensor());
-sensors.Add(new VirtualHighnessSensor());
-sensors.Add(new VirtualChargeSensor());
-sensors.Add(new VirtualTemperatureSensor());
+sensors.Add(new PacchettoDati());
+
 
 // define protocol
 IProtocol protocol = new Http("http://localhost:8011/drones/123");
+
 
 // send data to server
 while (true)

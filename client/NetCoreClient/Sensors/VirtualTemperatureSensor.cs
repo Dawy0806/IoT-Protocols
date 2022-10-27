@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NetCoreClient.Sensors
 {
-    class VirtualTemperatureSensor : ITemperatureSensor, ISensorJson
+    class VirtualTemperatureSensor : ITemperatureSensor//, ISensorJson
     {
         private readonly Random Random;
 
@@ -26,9 +26,9 @@ namespace NetCoreClient.Sensors
             return Temperature;
         }
 
-        public string ToJson()
-        {
-            return JsonSerializer.Serialize(new Temperature(Temperature()));
-        }
+        //public string ToJson()
+        //{
+        //    return JsonSerializer.Serialize(new Temperature(Temperature()));
+        //}
     }
 }

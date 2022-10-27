@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NetCoreClient.Sensors
 {
-    class VirtualHighnessSensor : IHighnessSensor, ISensorJson
+    class VirtualHighnessSensor : IHighnessSensor//, ISensorJson
     {
         private readonly Random Random;
 
@@ -17,9 +17,9 @@ namespace NetCoreClient.Sensors
             return new Highness(Random.Next(100)).Altezza;
         }
 
-        public string ToJson()
-        {
-            return JsonSerializer.Serialize(Highness());
-        }
+        //public string ToJson()
+        //{
+        //    return JsonSerializer.Serialize(Highness());
+        //}
     }
 }
