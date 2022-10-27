@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NetCoreClient.Sensors
 {
-    class VirtualChargeSensor : IChargeSensorInterface, ISensorInterface
+    class VirtualChargeSensor : IChargeSensor, ISensorJson
     {
         private readonly Random Random;
 
@@ -19,7 +19,7 @@ namespace NetCoreClient.Sensors
 
         public string ToJson()
         {
-            return JsonSerializer.Serialize(new Charge(Random.Next(100)));
+            return JsonSerializer.Serialize(Charge());
         }
     }
 }

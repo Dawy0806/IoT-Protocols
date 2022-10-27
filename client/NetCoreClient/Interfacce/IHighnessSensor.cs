@@ -1,6 +1,6 @@
 ﻿namespace NetCoreClient.Sensors
 {
-    interface IHighnessSensorInterface
+    interface IHighnessSensor
     {
         int Highness();
     }

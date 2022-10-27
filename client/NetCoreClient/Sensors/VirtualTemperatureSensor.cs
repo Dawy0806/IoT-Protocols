@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NetCoreClient.Sensors
 {
-    class VirtualTemperatureSensor : ITemperatureSensorInterface, ISensorInterface
+    class VirtualTemperatureSensor : ITemperatureSensor, ISensorJson
     {
         private readonly Random Random;
 

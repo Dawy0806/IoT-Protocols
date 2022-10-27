@@ -1,6 +1,6 @@
 ﻿namespace NetCoreClient.Sensors
 {
-    interface IChargeSensorInterface
+    interface IChargeSensor
     {
         int Charge();
     }

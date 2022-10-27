@@ -1,6 +1,6 @@
 ﻿namespace NetCoreClient.Sensors
 {
-    interface ITemperatureSensorInterface
+    interface ITemperatureSensor
     {
         double[] Temperature();
     }

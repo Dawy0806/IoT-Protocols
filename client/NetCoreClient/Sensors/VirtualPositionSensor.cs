@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NetCoreClient.Sensors
 {
-    class VirtualPositonSensor : IPositionSensorInterface, ISensorInterface
+    class VirtualPositonSensor : IPositionSensor, ISensorJson
     {
         private readonly Random Random;
 
