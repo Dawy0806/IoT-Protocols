@@ -1,4 +1,5 @@
 var restify = require('restify');
+var errs = require('restify-errors');
 var database = require('../server/database/db.js')
 
 //apro la connessione con il db direttamente da qua
@@ -17,14 +18,24 @@ server.use(restify.plugins.bodyParser());
 
 server.post('/drones/:id', async function (req, res, next) {
 
-    var drone = JSON.parse(req.body);
-    await database.postDrone(drone)
-    res.send('Data received from drone [TODO]');
-    console.log(drone);
-    return res;
+    if(req.body)
+    {
+        var drone = JSON.parse(req.body);
+        await database.postDrone(drone)
+        res.send(drone);
+        res.status(200, 'Ok')
+        console.log(drone);
+    }
+    else
+    {
+        err =  next(errs.BadRequestError())
+        console.log(err)
+        return err
+    }
+    
+    return next();
 });
 
 server.listen(8011, function (req, res, next) {
-
     console.log('%s listening at %s', server.name, server.url);
 });
