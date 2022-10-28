@@ -1,0 +1,37 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "backend_connectio",
+            "database": "Backend",
+            "username": "andrea",
+            "password": "andrea"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "ciao",
+            "database": "prova",
+            "username": "andrea",
+            "password": "andrea"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "iot-protocols",
+            "database": "IOT",
+            "username": "postgres",
+            "password": "password"
+        }
+    ]
+}

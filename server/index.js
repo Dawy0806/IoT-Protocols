@@ -17,10 +17,10 @@ server.use(restify.plugins.bodyParser());
 
 server.post('/drones/:id', async function (req, res, next) {
 
-    var value = JSON.parse(req.body);
-    await database.postDrone(value)
+    var drone = JSON.parse(req.body);
+    await database.postDrone(drone)
     res.send('Data received from drone [TODO]');
-    console.log(value.Value);
+    console.log(drone);
     return res;
 });
 

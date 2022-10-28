@@ -1,5 +1,5 @@
 const { Client } = require('pg')
-
+const {query_post} = require('../query/db_query.js')
 
 
 function GetConnectionDb() {
@@ -15,7 +15,7 @@ function GetConnectionDb() {
 }
 
 
-modeule.exports.getDrones = async function(){
+module.exports.getDrones = async function(){
     var db = GetConnectionDb()
     await db.query()
     db.end()
@@ -24,7 +24,11 @@ modeule.exports.getDrones = async function(){
 
 module.exports.postDrone = async function (drone) {
     var db = GetConnectionDb()
-    await db.query('INSERT into Prova VALUES ($1);', [drone.Value])
+    await db.query(query_post.speed, [drone.speed])
+    await db.query(query_post.position, [drone.position[1], drone.position[0]])
+    await db.query(query_post.altezza, [drone.highness])
+    await db.query(query_post.batteria, [drone.charge])
+    await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]])
     db.end()
 }
 
