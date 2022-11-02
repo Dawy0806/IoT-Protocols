@@ -1,5 +1,5 @@
 const { Client } = require('pg')
-const {query_post} = require('../query/db_query.js')
+const { query_post } = require('../query/db_query.js')
 
 
 function GetConnectionDb() {
@@ -15,7 +15,7 @@ function GetConnectionDb() {
 }
 
 
-module.exports.getDrones = async function(){
+module.exports.getDrones = async function () {
     var db = GetConnectionDb()
     await db.query()
     db.end()
@@ -24,25 +24,21 @@ module.exports.getDrones = async function(){
 
 module.exports.postDrone = async function (drone) {
     var db = GetConnectionDb()
-    await db.query(query_post.speed, [drone.speed])
-            .then(res => console.log("Query effetuata con successo, Ok"))
-            .catch(e => console.error(e.stack))
 
-    await db.query(query_post.position, [drone.position[1], drone.position[0]])
-            .then(res => console.log("Query effetuata con successo, Ok"))
-            .catch(e => console.error(e.stack))
+    try 
+    {
+        await db.query(query_post.speed, [drone.speed])
+        await db.query(query_post.position, [drone.position[1], drone.position[0]])
+        await db.query(query_post.altezza, [drone.highness])
+        await db.query(query_post.batteria, [drone.charge])
+        await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]])
 
-    await db.query(query_post.altezza, [drone.highness])
-            .then(res => console.log("Query effetuata con successo, Ok"))
-            .catch(e => console.error(e.stack))
+        console.log("Query effetuata con successo, OK")
 
-    await db.query(query_post.batteria, [drone.charge])
-            .then(res => console.log("Query effetuata con successo, Ok"))
-            .catch(e => console.error(e.stack))
-    
-    await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]])
-            .then(res => console.log("Query effetuata con successo, Ok"))
-            .catch(e => console.error(e.stack))
+    } catch (err) {
+
+        console.log(err.stack)
+    }
 
     db.end()
 }
