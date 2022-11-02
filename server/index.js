@@ -25,6 +25,7 @@ server.post('/drones/:id', async function (req, res, next) {
         res.send(drone);
         res.status(200, 'Ok')
         console.log(drone);
+        console.log("---------------------------------")
     }
     else
     {

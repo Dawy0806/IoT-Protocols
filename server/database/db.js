@@ -24,11 +24,26 @@ module.exports.getDrones = async function(){
 
 module.exports.postDrone = async function (drone) {
     var db = GetConnectionDb()
-    await db.query(query_post.speed, [drone.speed], (err, res) => {console.log(err.message)})
-    await db.query(query_post.position, [drone.position[1], drone.position[0]], (err, res) => {console.log(err.message)})
-    await db.query(query_post.altezza, [drone.highness], (err, res) => {console.log(err.message)})
-    await db.query(query_post.batteria, [drone.charge], (err, res) => {console.log(err.message)})
-    await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]], (err, res) => {console.log(err.message)})
+    await db.query(query_post.speed, [drone.speed])
+            .then(res => console.log("Query effetuata con successo, Ok"))
+            .catch(e => console.error(e.stack))
+
+    await db.query(query_post.position, [drone.position[1], drone.position[0]])
+            .then(res => console.log("Query effetuata con successo, Ok"))
+            .catch(e => console.error(e.stack))
+
+    await db.query(query_post.altezza, [drone.highness])
+            .then(res => console.log("Query effetuata con successo, Ok"))
+            .catch(e => console.error(e.stack))
+
+    await db.query(query_post.batteria, [drone.charge])
+            .then(res => console.log("Query effetuata con successo, Ok"))
+            .catch(e => console.error(e.stack))
+    
+    await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]])
+            .then(res => console.log("Query effetuata con successo, Ok"))
+            .catch(e => console.error(e.stack))
+
     db.end()
 }
 
