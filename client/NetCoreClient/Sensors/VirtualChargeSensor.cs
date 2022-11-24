@@ -15,6 +15,7 @@ namespace NetCoreClient.Sensors
         public int Charge()
         {
             return new Charge(Random.Next(100)).Batteria;
+            
         }
 
         //public string ToJson()

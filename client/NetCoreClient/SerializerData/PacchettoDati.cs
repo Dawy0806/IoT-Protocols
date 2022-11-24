@@ -2,8 +2,7 @@
 using NetCoreClient.ValueObjects;
 using System.Text.Json;
 
-namespace NetCoreClient.SendData
-{
+namespace NetCoreClient.SendData{
     public class PacchettoDati : ISensorJson
     {
         public string ToJson()
