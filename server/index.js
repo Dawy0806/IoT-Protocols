@@ -2,7 +2,7 @@
 // var errs = require('restify-errors');
 var database = require('../server/database/db.js')
 var mqtt = require('mqtt')
-const url = "127.0.0.1"
+const url = "localhost://127.0.0.1:1883"
 const topic = "droni/"
 const client = mqtt.connect(url)
 
@@ -36,12 +36,13 @@ client.on('connect', function () {
 //ricezione messaggi
 client.on('message', function (topic, message, packet) {
     console.log(message.toString())
-    //client.end()
+    
 })
 
 //gestione errori
 client.on('error', function(error){
     console.log(error.message)
+    //client.end()
 })
 
 
