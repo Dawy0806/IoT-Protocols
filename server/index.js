@@ -36,7 +36,7 @@ client.on('connect', function () {
 //ricezione messaggi
 client.on('message', function (topic, message, packet) {
     console.log(message.toString())
-    client.end()
+    //client.end()
 })
 
 //gestione errori
