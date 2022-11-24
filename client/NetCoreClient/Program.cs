@@ -21,7 +21,7 @@ while (true)
 
         var sensorValue = sensor.ToJson();
 
-        protocol.Send(sensorValue);
+        protocol.Send(sensorValue, sensor.GetSlug());
 
         Console.WriteLine("Data sent: " + sensorValue);
 
