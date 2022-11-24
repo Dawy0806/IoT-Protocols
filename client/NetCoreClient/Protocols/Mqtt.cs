@@ -8,42 +8,51 @@ namespace NetCoreClient.Protocols
     class Mqtt : IProtocol
     {
 
-        private string endPoint;
-        private int port;
-        private string topic;
+        private string _endPoint;
+        private int _port;
+        private string _topic;
+        private IMqttClient _client;
 
         public Mqtt(string endPoint, string topic, int port)
         {
-            this.endPoint = endPoint;
-            this.topic = topic;
-            this.port = port;
+            this._endPoint = endPoint;
+            this._topic = topic;
+            this._port = port;
             Connection().GetAwaiter().GetResult();
         }
 
         //metodo per la connesione con il protocollo mqtt
-        private async Task<IMqttClient> Connection()
+        private async Task<MqttClientConnectResult> Connection()
         {
             var mqtt = new MqttFactory();
-            var client = mqtt.CreateMqttClient();
+            _client = mqtt.CreateMqttClient();
             var options = new MqttClientOptionsBuilder()
                              .WithClientId(Guid.NewGuid().ToString())
-                             .WithTcpServer(endPoint, port)
+                             .WithTcpServer(_endPoint, _port)
                              .WithCleanSession()
                              .Build();
-            await client.ConnectAsync(options, CancellationToken.None);
-            return client;
+            return await _client.ConnectAsync(options, CancellationToken.None);
+            //return client;
         }
-
 
         //metodo per mandare il messaggio
         public async void Send(string data)
         {
-            var client = await Connection();
+            //var client = await Connection();
             var message = new MqttApplicationMessageBuilder()
-                                .WithTopic(topic)
+                                .WithTopic(_topic)
                                 .WithPayload(data)
                                 .Build();
-            await client.PublishAsync(message, CancellationToken.None);
+                                
+            if (_client.IsConnected) 
+            {
+                await _client.PublishAsync(message, CancellationToken.None);
+            }
+            else
+            {
+                Console.WriteLine("errore nella pubblicazione del messaggio o problemi di connesione");
+            }
+            
         }
     }
 }

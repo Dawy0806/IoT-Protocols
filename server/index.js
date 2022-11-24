@@ -34,15 +34,18 @@ client.on('connect', function () {
 
 
 //ricezione messaggi
-client.on('message', function (topic, message, packet) {
+client.on('message',async function (topic, message, packet) {
     console.log(message.toString())
+    var mess = message.toString()
+    var drone = JSON.parse(mess);
+    await database.postDrone(drone)
     
 })
 
 //gestione errori
 client.on('error', function(error){
     console.log(error.message)
-    //client.end()
+    client.end()
 })
 
 
