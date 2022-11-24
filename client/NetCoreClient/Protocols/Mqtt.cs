@@ -1,4 +1,3 @@
-
 using MQTTnet;
 using MQTTnet.Client;
 using System;
@@ -10,7 +9,6 @@ namespace NetCoreClient.Protocols
     {
 
         private string endPoint;
-        private IMqttClient mqttClient;
         private int port;
         private string topic;
 
@@ -23,7 +21,7 @@ namespace NetCoreClient.Protocols
         }
 
         //metodo per la connesione con il protocollo mqtt
-        private async Task<MqttClientConnectResult> Connection()
+        private async Task<IMqttClient> Connection()
         {
             var mqtt = new MqttFactory();
             var client = mqtt.CreateMqttClient();
@@ -32,19 +30,20 @@ namespace NetCoreClient.Protocols
                              .WithTcpServer(endPoint, port)
                              .WithCleanSession()
                              .Build();
-            return await client.ConnectAsync(options);
+            await client.ConnectAsync(options, CancellationToken.None);
+            return client;
         }
 
 
         //metodo per mandare il messaggio
         public async void Send(string data)
         {
-            var client = Connection();
+            var client = await Connection();
             var message = new MqttApplicationMessageBuilder()
                                 .WithTopic(topic)
                                 .WithPayload(data)
                                 .Build();
-            await mqttClient.PublishAsync(message, CancellationToken.None);
+            await client.PublishAsync(message, CancellationToken.None);
         }
     }
 }

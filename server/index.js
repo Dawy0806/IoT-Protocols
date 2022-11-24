@@ -2,9 +2,9 @@
 // var errs = require('restify-errors');
 var database = require('../server/database/db.js')
 var mqtt = require('mqtt')
-const url = "localhost://127.0.0"
-const topic = "presence"
-const servermqtt = mqtt.connect(url)
+const url = "127.0.0.1"
+const topic = "droni/"
+const client = mqtt.connect(url)
 
 //apro la connessione con il db direttamente da qua
 // var server = restify.createServer();
@@ -22,24 +22,25 @@ const servermqtt = mqtt.connect(url)
 
 
 //connesione 
-servermqtt.on('connect', function () {
+client.on('connect', function () {
 
-    servermqtt.subscribe(topic, function (err) {
+    client.subscribe(topic, function (err) {
         if (!err) {
-            servermqtt.publish('presence', " i'm connect")
+            client.publish(topic, " i'm connect")
+            console.log('connect')
         }
     })
 });
 
 
 //ricezione messaggi
-servermqtt.on('message', function (topic, message, packet) {
+client.on('message', function (topic, message, packet) {
     console.log(message.toString())
-    servermqtt.end()
+    client.end()
 })
 
 //gestione errori
-servermqtt.on('error', function(error){
+client.on('error', function(error){
     console.log(error.message)
 })
 

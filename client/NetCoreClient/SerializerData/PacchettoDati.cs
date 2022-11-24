@@ -5,6 +5,11 @@ using System.Text.Json;
 namespace NetCoreClient.SendData{
     public class PacchettoDati : ISensorJson
     {
+        public string GetSlug()
+        {
+            throw new NotImplementedException();
+        }
+
         public string ToJson()
         {
             var data = new {
