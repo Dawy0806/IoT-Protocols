@@ -16,7 +16,10 @@ namespace NetCoreClient.Sensors
         {
             return new Charge(Random.Next(100)).Batteria;
         }
-
+        public string GetSlug()
+        {
+            return "speed";
+        }
         //public string ToJson()
         //{
         //    return JsonSerializer.Serialize(Charge());

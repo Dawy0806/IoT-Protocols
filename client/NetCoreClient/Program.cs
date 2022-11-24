@@ -9,7 +9,7 @@ sensors.Add(new PacchettoDati());
 
 
 // define protocol
-IProtocol protocol = new Http("http://localhost:8011/drones/123");
+IProtocolInterface protocol = new Mqtt("127.0.0.1");
 
 
 // send data to server
@@ -20,7 +20,7 @@ while (true)
 
         var sensorValue = sensor.ToJson();
 
-        protocol.Send(sensorValue);
+        protocol.Send(sensorValue, sensor.GetSlug());
 
         Console.WriteLine("Data sent: " + sensorValue);
 
