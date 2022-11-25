@@ -2,31 +2,16 @@
 // var errs = require('restify-errors');
 var database = require('../server/database/db.js')
 var mqtt = require('mqtt')
-const url = "localhost://127.0.0.1:1883"
+const brokerUrl = "localhost://127.0.0.1:1883"
 const topic = "droni/"
-const client = mqtt.connect(url)
-
-//apro la connessione con il db direttamente da qua
-// var server = restify.createServer();
-// server.use(restify.plugins.bodyParser());
-
-// server.get('/drones', function (req, res, next) {
-//     res.send('List of drones: [TODO]');
-//     return next();
-// });
-
-// server.get('/drones/:id', function (req, res, next) {
-//     res.send('Current values for drone ' + req.params['id'] + ': [TODO]');
-//     return next();
-// });
-
+const client = mqtt.connect(brokerUrl)
 
 //connesione 
 client.on('connect', function () {
 
     client.subscribe(topic, function (err) {
         if (!err) {
-            client.publish(topic, " i'm connect")
+            client.publish(topic, " Connesione andata a buon fine!! CONNESSO")
             console.log('connect')
         }
     })
@@ -48,6 +33,20 @@ client.on('error', function(error){
     client.end()
 })
 
+
+//apro la connessione con il db direttamente da qua
+// var server = restify.createServer();
+// server.use(restify.plugins.bodyParser());
+
+// server.get('/drones', function (req, res, next) {
+//     res.send('List of drones: [TODO]');
+//     return next();
+// });
+
+// server.get('/drones/:id', function (req, res, next) {
+//     res.send('Current values for drone ' + req.params['id'] + ': [TODO]');
+//     return next();
+// });
 
 // server.post('/drones/:id', async function (req, res, next) {
 

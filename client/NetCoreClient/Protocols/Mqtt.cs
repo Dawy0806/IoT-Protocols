@@ -8,10 +8,10 @@ namespace NetCoreClient.Protocols
     class Mqtt : IProtocol
     {
 
-        private string _endPoint;
+        private string? _endPoint;
         private int _port;
-        private string _topic;
-        private IMqttClient _client;
+        private string? _topic;
+        private IMqttClient? _client;
 
         public Mqtt(string endPoint, string topic, int port)
         {
@@ -44,7 +44,7 @@ namespace NetCoreClient.Protocols
                                 .WithPayload(data)
                                 .Build();
                                 
-            if (_client.IsConnected) 
+            if (_client is not null && _client.IsConnected) 
             {
                 await _client.PublishAsync(message, CancellationToken.None);
             }

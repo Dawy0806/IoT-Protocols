@@ -25,7 +25,7 @@ while (true)
 
         Console.WriteLine("Data sent: " + sensorValue);
 
-        Thread.Sleep(2000);
+        Thread.Sleep(5000);
     }
 
 }
