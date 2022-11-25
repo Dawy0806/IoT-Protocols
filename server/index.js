@@ -14,17 +14,27 @@ client.on('connect', function () {
             client.publish(topic, " Connesione andata a buon fine!! CONNESSO")
             console.log('connect')
         }
+        else
+        {
+            console.log('errore nella connesione')
+        }
     })
 });
 
 
 //ricezione messaggi
-client.on('message',async function (topic, message, packet) {
-    console.log(message.toString())
-    var mess = message.toString()
-    var drone = JSON.parse(mess);
-    await database.postDrone(drone)
-    
+client.on('message',async function (topic, message) {
+
+    if(message != null)
+    {
+        console.log(message.toString())
+        var drone = JSON.parse(message.toString());
+        await database.postDrone(drone)
+    }
+    else
+    {
+        console.log('errore nel messaggio')
+    }
 })
 
 //gestione errori
