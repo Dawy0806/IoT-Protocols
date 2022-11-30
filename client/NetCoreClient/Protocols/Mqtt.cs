@@ -7,7 +7,6 @@ namespace NetCoreClient.Protocols
 {
     class Mqtt : IProtocol
     {
-
         private string? _endPoint;
         private int _port;
         private string? _topic;

@@ -21,7 +21,6 @@ module.exports.getDrones = async function () {
     db.end()
 }
 
-
 module.exports.postDrone = async function (drone) {
     var db = GetConnectionDb()
 
