@@ -5,13 +5,14 @@ var mqtt = require('mqtt')
 const brokerUrl = "localhost://127.0.0.1:1883"
 const topic = "droni/"
 const client = mqtt.connect(brokerUrl)
+var isConnect = false
 
 //connesione 
 client.on('connect', function () {
-
     client.subscribe(topic, function (err) {
         if (!err) {
-            client.publish(topic, " Connesione andata a buon fine!! CONNESSO")
+            client.publish(topic, "Connesione andata a buon fine!! CONNESSO")
+            isConnect = true
             console.log('connect')
         }
         else
@@ -23,13 +24,22 @@ client.on('connect', function () {
 
 
 //ricezione messaggi
-client.on('message',async function (topic, message) {
+client.on('message',  async function (topic, message) {
 
-    if(message != null)
+    if(message.toString() != null && isConnect)
     {
-        console.log(message.toString())
-        var drone = JSON.parse(message.toString());
-        await database.postDrone(drone)
+        console.log(message.toString())            
+
+        let drone;
+        try{
+            drone = JSON.parse(message.toString())
+            await database.postDrone(drone)
+        }
+        catch(ex){
+            console.error('json parse error')
+        }
+        
+        
     }
     else
     {

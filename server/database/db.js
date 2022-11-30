@@ -22,23 +22,27 @@ module.exports.getDrones = async function () {
 }
 
 module.exports.postDrone = async function (drone) {
-    var db = GetConnectionDb()
+    if (drone == undefined || drone == null) {
+        return;
+    } 
+    else {
+        var db = GetConnectionDb()
 
-    try 
-    {
-        await db.query(query_post.speed, [drone.speed])
-        await db.query(query_post.position, [drone.position[1], drone.position[0]])
-        await db.query(query_post.altezza, [drone.highness])
-        await db.query(query_post.batteria, [drone.charge])
-        await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]])
+        try {
+            await db.query(query_post.speed, [drone.speed])
+            await db.query(query_post.position, [drone.position[1], drone.position[0]])
+            await db.query(query_post.altezza, [drone.highness])
+            await db.query(query_post.batteria, [drone.charge])
+            await db.query(query_post.temperatura, [drone.temperature[0], drone.temperature[1]])
 
-        console.log("Query effetuata con successo, OK")
+            console.log("Query effetuata con successo, OK")
 
-    } catch (err) {
+        } catch (err) {
 
-        console.log(err.stack)
+            console.log(err.stack)
+        } finally {
+            db.end()
+        }
     }
-
-    db.end()
 }
 
