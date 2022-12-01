@@ -32,7 +32,7 @@ namespace NetCoreClient.Protocols
                              .WithCleanSession()
                              .Build();
 
-            var resultConnection = await _client.TryPingAsync();
+            var resultConnection = await _client.TryPingAsync(CancellationToken.None);
 
             if (resultConnection)
             {
