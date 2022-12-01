@@ -20,6 +20,7 @@ namespace NetCoreClient.Protocols
             Connection().GetAwaiter().GetResult();
         }
 
+
         //metodo per la connesione con il protocollo mqtt
         private async Task<MqttClientConnectResult> Connection()
         {
@@ -30,7 +31,15 @@ namespace NetCoreClient.Protocols
                              .WithTcpServer(_endPoint, _port)
                              .WithCleanSession()
                              .Build();
-            return await _client.ConnectAsync(options, CancellationToken.None);
+
+            var resultConnection = await _client.TryPingAsync();
+
+            if (resultConnection)
+            {
+                return await _client.ConnectAsync(options, CancellationToken.None);
+            }
+            
+            throw new Exception("errore di connessione, verificare se i dati sono giusti");
             //return client;
         }
 
@@ -42,8 +51,8 @@ namespace NetCoreClient.Protocols
                                 .WithTopic(_topic)
                                 .WithPayload(data)
                                 .Build();
-                                
-            if (_client is not null && _client.IsConnected) 
+
+            if (_client is not null && _client.IsConnected)
             {
                 await _client.PublishAsync(message, CancellationToken.None);
             }
@@ -51,7 +60,7 @@ namespace NetCoreClient.Protocols
             {
                 Console.WriteLine("errore nella pubblicazione del messaggio o problemi di connesione");
             }
-            
+
         }
     }
 }
