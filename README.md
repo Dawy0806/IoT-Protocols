@@ -1,9 +1,4 @@
-# IoT-Protocols
-Progetto Iot Protocols con Stefano Valle.
-## Partecipanti:
-- Nizzetto Davide
-- Finco Andrea
-- Bonan Nicola
+# IoT-Protocols Mqtt
 ## Desc:
 Stabilita connessione Mqtt 👍
 <br> Payload e Topic per ciascun comando (Acceso/Spento/Torna a casa) = 
