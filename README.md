@@ -7,5 +7,3 @@ Progetto Iot Protocols con Stefano Valle.
 ## Stato
  - Connessione HTTP riuscita :+1:
  - Connessione Mqtt riuscita :+1:
- - Stiamo creando la pagina statica per inviare comandi (Acceso/Spento, Torna a casa)
- - Aggiungere morte improvvisa(disconnessione)
