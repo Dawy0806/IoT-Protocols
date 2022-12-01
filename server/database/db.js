@@ -24,7 +24,7 @@ module.exports.getDrones = async function () {
 module.exports.postDrone = async function (drone) {
     if (drone == undefined || drone == null) {
         return;
-    } 
+    }
     else {
         var db = GetConnectionDb()
 
