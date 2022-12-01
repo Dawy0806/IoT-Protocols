@@ -26,10 +26,7 @@ namespace NetCoreClient.Sensors
             Position[1] = Math.Round(Position[1], 4);
             return Position;
         }
-        public string GetSlug()
-        {
-            return "speed";
-        }
+
         //public string ToJson()
         //{
         //    return JsonSerializer.Serialize(new Position(Position()));

@@ -25,10 +25,7 @@ namespace NetCoreClient.Sensors
             Temperature[1] = Math.Round(Temperature[1], 1);
             return Temperature;
         }
-        public string GetSlug()
-        {
-            return "speed";
-        }
+
         //public string ToJson()
         //{
         //    return JsonSerializer.Serialize(new Temperature(Temperature()));

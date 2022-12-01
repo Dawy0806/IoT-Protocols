@@ -16,10 +16,7 @@ namespace NetCoreClient.Sensors
         {
             return new Highness(Random.Next(100)).Altezza;
         }
-        public string GetSlug()
-        {
-            return "speed";
-        }
+
         //public string ToJson()
         //{
         //    return JsonSerializer.Serialize(Highness());

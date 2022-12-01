@@ -16,10 +16,7 @@ namespace NetCoreClient.Sensors
         {
             return new Speed(Random.Next(100)).Velocita;
         }
-        public string GetSlug()
-        {
-            return "Speed";
-        }
+
         //public string ToJson()
         //{
         //    return JsonSerializer.Serialize(Speed());
