@@ -1,7 +1,7 @@
 
 var database = require('../server/database/db.js')
 var mqtt = require('mqtt')
-const brokerUrl = "localhost://127.0.0.1:1883"
+const brokerUrl = "localhost://127.0.0.1"
 const topic = "droni/"
 const client = mqtt.connect(brokerUrl)
 var connection_message = "Connesione andata a buon fine!! CONNESSO"

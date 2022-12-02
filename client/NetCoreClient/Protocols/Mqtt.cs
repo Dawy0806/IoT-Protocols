@@ -28,18 +28,22 @@ namespace NetCoreClient.Protocols
             _client = mqtt.CreateMqttClient();
             var options = new MqttClientOptionsBuilder()
                              .WithClientId(Guid.NewGuid().ToString())
-                             .WithTcpServer(_endPoint, _port)
+                             .WithTcpServer(_endPoint)
                              .WithCleanSession()
                              .Build();
 
-            var resultConnection = await _client.TryPingAsync(CancellationToken.None);
+            //var resultConnection = await _client.TryPingAsync();
 
-            if (resultConnection)
+            if (await _client.TryPingAsync())
             {
                 return await _client.ConnectAsync(options, CancellationToken.None);
             }
+            else
+            {
+              throw new Exception("errore di connessione, verificare se i dati sono giusti");  
+            }
             
-            throw new Exception("errore di connessione, verificare se i dati sono giusti");
+            
             //return client;
         }
 
@@ -50,6 +54,7 @@ namespace NetCoreClient.Protocols
             var message = new MqttApplicationMessageBuilder()
                                 .WithTopic(_topic)
                                 .WithPayload(data)
+                                .WithRetainFlag(true)
                                 .Build();
 
             if (_client is not null && _client.IsConnected)
