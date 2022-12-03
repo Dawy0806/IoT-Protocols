@@ -9,7 +9,8 @@ const options = {
     clean: true,
     will:{
         topic: 'client/error/',
-        payload: 'disconnesione/malfunzionamento con il drone',
+        payload: 'disconnesione/malfunzionamento interno',
+        retain: true
     }
 }
 const client = mqtt.connect(brokerUrl, options)

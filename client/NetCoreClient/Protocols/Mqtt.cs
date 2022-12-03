@@ -66,6 +66,8 @@ namespace NetCoreClient.Protocols
                              .WithWillTopic(_lastWillTopic)
                              //utile al fine di comunicare un messaggio in caso di disconessione o malfunzionamento del drone
                              .WithWillPayload(_lastWillMessageTopic)
+                             //salviamo l'ultimo messaggio inviato al topic
+                             .WithWillRetain(true)
                              .Build();
 
             
