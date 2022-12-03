@@ -66,7 +66,6 @@ namespace NetCoreClient.Protocols
                              .WithWillTopic(_lastWillTopic)
                              //utile al fine di comunicare un messaggio in caso di disconessione o malfunzionamento del drone
                              .WithWillPayload(_lastWillMessageTopic)
-                             .WithWillRetain(true)
                              .Build();
 
             
@@ -96,7 +95,7 @@ namespace NetCoreClient.Protocols
             var message = new MqttApplicationMessageBuilder()
                                 .WithTopic(_topic)
                                 .WithPayload(data)
-                                .WithRetainFlag(false)
+                                .WithRetainFlag(true)
                                 .Build();
 
             if (_client is not null && _client.IsConnected)

@@ -11,7 +11,7 @@ sensors.Add(new PacchettoDati());
 // define protocol
 //IProtocol protocol = new Http("http://localhost:8011/drones/123");
 //IProtocol protocol = new Mqtt("5.tcp.eu.ngrok.io", "droni/", 14771);
-IProtocol protocol = new Mqtt("127.0.0.1", "droni/", 1883, TimeSpan.FromSeconds(2), "errori/");
+IProtocol protocol = new Mqtt("127.0.0.1", "droni/", 1883, TimeSpan.FromSeconds(2), "droni/error/");
 
 
 // send data to server

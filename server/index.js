@@ -6,7 +6,11 @@ const topic = "droni/"
 
 const options = {
     //clean session
-    clean: true
+    clean: true,
+    will:{
+        topic: 'client/error/',
+        payload: 'disconnesione/malfunzionamento con il drone',
+    }
 }
 const client = mqtt.connect(brokerUrl, options)
 var connection_message = "Connesione andata a buon fine!! CONNESSO"
