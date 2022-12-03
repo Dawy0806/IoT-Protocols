@@ -12,4 +12,5 @@ Stabilita connessione Mqtt 👍
 
 <br> Implemetare sessioni persistenti e garantire la memorizzazione dei messaggi inviati finchè era disconnesso
 
-<br> Last Will and Testament / Keep Alive / Username e Password
+<br> Last Will and Testament (implementato perche se c'e una disconnessione del client per motivi sconosciuti almeno possiamo sapere su un topic dedicato )
+<br>/ Keep Alive / Username e Password
