@@ -18,12 +18,13 @@ namespace NetCoreClient.Protocols
             {
                 HostName = _hostName,
             };
-            _conn = _client.CreateConnection();
+            
         }
 
 
         public void Send(string data)
         {
+            using (_conn = _client.CreateConnection()) ;
             using (var channel = _conn?.CreateModel())
             {
                 channel.QueueDeclare(
