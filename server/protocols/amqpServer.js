@@ -9,7 +9,7 @@ amqp.connect('amqp://localhost', function(error0, connection) {
             throw error1;
         }
 
-        var queue = 'prova';
+        var queue = 'droni';
 
         channel.assertQueue(queue, {
             durable: false
@@ -17,7 +17,7 @@ amqp.connect('amqp://localhost', function(error0, connection) {
 
 
         channel.consume(queue, function(msg) {
-            console.log(" [x] Received %s", msg.content.toString());
+            console.log(msg.content.toString());
         }, {
             noAck: true
         });

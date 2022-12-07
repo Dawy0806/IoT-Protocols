@@ -8,23 +8,21 @@ namespace NetCoreClient.Protocols
 
         private string? _hostName;
 
-        private ConnectionFactory? _client;
         private IConnection? _conn;
-        //private IModel? _channel;
+
         public Amqp(string? hostName)
         {
             _hostName = hostName;
-            _client = new ConnectionFactory()
+            var client = new ConnectionFactory()
             {
                 HostName = _hostName,
             };
-            
+            _conn = client.CreateConnection();
         }
 
 
         public void Send(string data)
         {
-            using (_conn = _client.CreateConnection()) ;
             using (var channel = _conn?.CreateModel())
             {
                 channel.QueueDeclare(
