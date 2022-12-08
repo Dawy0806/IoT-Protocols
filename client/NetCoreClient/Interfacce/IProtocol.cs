@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NetCoreClient.Interfacce
 {
-    interface IProtocol
+    public interface IProtocol
     {
         void Send(string data);
     }

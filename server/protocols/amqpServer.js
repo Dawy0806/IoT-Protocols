@@ -9,7 +9,7 @@ amqp.connect('amqp://localhost', function(error0, connection) {
             throw error1;
         }
 
-        var queue = 'droni';
+        var queue = 'droni';  
 
         channel.assertQueue(queue, {
             durable: false
@@ -23,3 +23,8 @@ amqp.connect('amqp://localhost', function(error0, connection) {
         });
     });
 });
+
+//collegarsi  redis parte server anche(DIO CANE)
+//redis progetto nuovo
+//parte server gestisce le code, raccolta dati code broker
+//es: 1 coda raccoglie tutte esalva in db (js)
