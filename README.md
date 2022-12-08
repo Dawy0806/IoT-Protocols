@@ -1,3 +1,3 @@
-# IoT-Protocols AMQP
+# IoT-Protocols-AMQP
 ## Desc:
 Stabilita connessione AMQP 👍
