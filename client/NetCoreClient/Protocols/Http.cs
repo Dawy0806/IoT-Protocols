@@ -6,7 +6,7 @@ namespace NetCoreClient.Protocols
     class Http : IProtocol
     {
         private string Endpoint;
-        private HttpClient? _client;
+        private HttpClient _client;
         public Http(string endpoint)
         {
             this.Endpoint = endpoint;

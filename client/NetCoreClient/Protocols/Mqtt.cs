@@ -9,11 +9,11 @@ namespace NetCoreClient.Protocols
     {
         private string? _endPoint;
         private string? _topic;
-        private IMqttClient? _client;
+        private IMqttClient _client;
         private string? _lastWillTopic;
         private string? _lastWillMessageTopic;
         private TimeSpan _keepAlive;
-        private int? _port;
+        private int _port;
 
         public Mqtt(string endPoint, string topic, int port, TimeSpan keepAlive, string lastWillTopic)
         {
