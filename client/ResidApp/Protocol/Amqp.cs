@@ -1,5 +1,5 @@
-﻿using RabbitMQ.Client;
-using StackExchange.Redis;
+﻿using NetCoreClient.Protocol;
+using RabbitMQ.Client;
 using System.Text;
 
 namespace AmqpApp.Protocol
@@ -7,23 +7,30 @@ namespace AmqpApp.Protocol
     public class Amqp : NetCoreClient.Interfacce.IProtocol
     {
         private string? _hostName;
-        private IConnectionMultiplexer _redis;
+
         private IConnection _conn;
 
         public Amqp(string? hostName)
         {
             _hostName = hostName;
-            var client = new ConnectionFactory()
-            {
-                HostName = _hostName,
-            };
-            _conn = client.CreateConnection();
+            _conn = GetConnection();
+        }
 
-            _redis = ConnectionMultiplexer.ConnectAsync(
-                    new ConfigurationOptions()
-                    {
-                        EndPoints = { "localhost:6379" }
-                    }).Result;
+
+        private IConnection GetConnection()
+        {
+            try
+            {
+                return new ConnectionFactory()
+                {
+                    HostName = _hostName,
+                }
+                .CreateConnection();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Errore nella connesione");
+            }
         }
 
         public void Send(string data)

@@ -15,7 +15,8 @@ Redis redis = new Redis("localhost");
 while (true)
 {
 
-    var data = redis.ReadData();
+    var data = await redis.ReadData();
+
     protocol.Send(data);
 
     Console.WriteLine("Data sent: " + data);

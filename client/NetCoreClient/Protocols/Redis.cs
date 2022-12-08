@@ -1,6 +1,5 @@
 ﻿using NetCoreClient.Interfacce;
 using StackExchange.Redis;
-using System.Text.Json;
 
 namespace NetCoreClient.Protocol
 {
@@ -16,12 +15,24 @@ namespace NetCoreClient.Protocol
             _endPoint = endPoint;
             _port = 6379;
             _key = "key";
-            _conn = ConnectionMultiplexer.ConnectAsync(
-                    new ConfigurationOptions()
-                    {
-                        EndPoints = { $"{_endPoint}:{_port}" }
-                    }
-                ).Result;
+            _conn = GetConnection(_endPoint);
+        }
+
+
+        private IConnectionMultiplexer GetConnection(string? endpoint)
+        {
+            try
+            {
+                return ConnectionMultiplexer.ConnectAsync(
+                                    new ConfigurationOptions()
+                                    {
+                                        EndPoints = { $"{endpoint}:{_port}" }
+                                    }).Result;
+            }catch(Exception)
+            {
+                throw new Exception("errore nella connesione");
+            }
+            
         }
 
         public void Send(string data)
@@ -33,27 +44,33 @@ namespace NetCoreClient.Protocol
                 var dbConn = db.PingAsync();
                 db.StringSetAsync(_key, data);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new Exception("Errore nella connesione alla db");
             }
         }
 
 
-        public string ReadData()
+        public async Task<string> ReadData()
         {
             try
             {
                 var db = _conn.GetDatabase();
 
-                var dbConn = db.PingAsync();
+                var dbConn = await db.PingAsync();
 
                 var value = db.StringGetAsync("key");
-                Console.WriteLine("ciao come stai " + value.Result);
-                return value.Result;
+                
+                if(value is not null)
+                {
+                    return value.Result;
+                }
+                else{
+                    return null;
+                }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new Exception("Errore nella connesione alla db");
             }

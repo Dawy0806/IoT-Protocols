@@ -1,4 +1,6 @@
 var amqp = require('amqplib/callback_api');
+var db = require('../database/db.js')
+
 
 amqp.connect('amqp://localhost', function(error0, connection) {
     if (error0) {
@@ -16,8 +18,11 @@ amqp.connect('amqp://localhost', function(error0, connection) {
         });
 
 
-        channel.consume(queue, function(msg) {
+        channel.consume(queue, async function(msg) {
             console.log(msg.content.toString());
+            var drone = JSON.parse(msg.content.toString())
+            await db.postDrone(drone)
+
         }, {
             noAck: true
         });
