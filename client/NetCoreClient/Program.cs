@@ -23,9 +23,9 @@ while (true)
     {
 
         var sensorValue = sensor.ToJson();
-
         protocol.Send(sensorValue);
-        
+
+
         Console.WriteLine("Data sent: " + sensorValue);
 
         Thread.Sleep(5000);

@@ -1,22 +1,14 @@
-﻿using NetCoreClient.Protocol;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ResidApp.Protocol
+namespace AmqpApp.Protocol
 {
     public class Amqp : NetCoreClient.Interfacce.IProtocol
     {
         private string? _hostName;
-
+        private IConnectionMultiplexer _redis;
         private IConnection _conn;
-
-        private Redis _redis;
-        
 
         public Amqp(string? hostName)
         {
@@ -26,13 +18,17 @@ namespace ResidApp.Protocol
                 HostName = _hostName,
             };
             _conn = client.CreateConnection();
+
+            _redis = ConnectionMultiplexer.ConnectAsync(
+                    new ConfigurationOptions()
+                    {
+                        EndPoints = { "localhost:6379" }
+                    }).Result;
         }
 
         public void Send(string data)
         {
-            var dataRedis = _redis.ReadData();
 
-            Console.WriteLine(dataRedis);
 
             using (var channel = _conn.CreateModel())
             {
@@ -43,7 +39,7 @@ namespace ResidApp.Protocol
                         autoDelete: false
                     );
 
-                var body = Encoding.UTF8.GetBytes(dataRedis);
+                var body = Encoding.UTF8.GetBytes(data);
 
                 channel.BasicPublish(
                         exchange: "",

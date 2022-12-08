@@ -1,7 +1,7 @@
-﻿using NetCoreClient.Interfacce;
-using NetCoreClient.Sensors;
-using ResidApp;
-using ResidApp.Protocol;
+﻿using AmqpApp.Protocol;
+using NetCoreClient.Interfacce;
+using NetCoreClient.Protocol;
+using StackExchange.Redis;
 
 
 // define protocol
@@ -9,21 +9,17 @@ using ResidApp.Protocol;
 //IProtocol protocol = new Mqtt("5.tcp.eu.ngrok.io", "droni/", 14771);
 //IProtocol protocol = new Mqtt("127.0.0.1", "droni/", 1883, TimeSpan.FromSeconds(2), "droni/error/");
 IProtocol protocol = new Amqp("localhost");
-
+Redis redis = new Redis("localhost");
 
 // send data to server
 while (true)
 {
-    //foreach (ISensorJson sensor in sensors)
-    //{
 
-    //    var sensorValue = sensor.ToJson();
+    var data = redis.ReadData();
+    protocol.Send(data);
 
-    //    protocol.Send(sensorValue);
+    Console.WriteLine("Data sent: " + data);
 
-    //    Console.WriteLine("Data sent: " + sensorValue);
-
-    //    Thread.Sleep(5000);
-    //}
+    Thread.Sleep(5000);
 }
 

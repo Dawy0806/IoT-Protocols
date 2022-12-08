@@ -1,5 +1,6 @@
 ﻿using NetCoreClient.Interfacce;
 using StackExchange.Redis;
+using System.Text.Json;
 
 namespace NetCoreClient.Protocol
 {
@@ -23,17 +24,14 @@ namespace NetCoreClient.Protocol
                 ).Result;
         }
 
-        public async void Send(string data)
+        public void Send(string data)
         {
 
             try
             {
                 var db = _conn.GetDatabase();
-
-                var dbConn = await db.PingAsync();
-
-                await db.StringSetAsync(_key, data);
-
+                var dbConn = db.PingAsync();
+                db.StringSetAsync(_key, data);
             }
             catch (Exception ex)
             {
@@ -42,18 +40,18 @@ namespace NetCoreClient.Protocol
         }
 
 
-        public async string ReadData()
+        public string ReadData()
         {
             try
             {
                 var db = _conn.GetDatabase();
 
-                var dbConn = await db.PingAsync();
+                var dbConn = db.PingAsync();
 
-                var value = await db.StringGetAsync(_key);
+                var value = db.StringGetAsync("key");
+                Console.WriteLine("ciao come stai " + value.Result);
+                return value.Result;
 
-                return value.ToString();
-                Console.WriteLine(value);
             }
             catch (Exception ex)
             {
