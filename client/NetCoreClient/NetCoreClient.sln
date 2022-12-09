@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreClient", "NetCoreClient.csproj", "{142EE45C-F4FF-4668-94CE-A0FCD73F4215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmqpProject", "..\AmqpProject\AmqpProject.csproj", "{FC441145-30D4-42E6-AF69-A0CEA384A028}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmqpClient", "..\AmqpClient\AmqpClient.csproj", "{FC441145-30D4-42E6-AF69-A0CEA384A028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
